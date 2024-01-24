@@ -1,0 +1,27 @@
+- name: Deployment of a docker container running apache
+  hosts: prod le play va exécuter les taches
+  become: true
+
+  pre_tasks:
+  - name: Install EPEL repo 
+    package: 
+      name: "{{item}}"
+      state: present
+    when: ansible_distribution == "CentOS"
+    loop: [epel-release, git, wget]
+  - name: download pip script
+     get_url:           
+       url: https://bootstrap.pypa.io/pip/2.7/get-pip.py  
+       dest: /tmp/get-pip.py                                                      
+ - name: install python-pip
+     command: python2.7 /tmp/get-pip.py
+ - name: Install docker python
+     pip: name=docker-py    
+
+ tasks:
+ - name: Deploy apache container                                                                    
+   docker_container:
+     name: webapp 
+     image: httpd
+     ports:
+     - "80:80"
