@@ -1,0 +1,7 @@
+all:
+  ansible_shh_common_args: '-o StrictHostKeyChecking=no'
+
+prod:
+  hosts:
+    client:
+      ansible_host: 10.0.29.4
