@@ -21,7 +21,7 @@
   tasks:
   - name: Copy website file template
       template:
-        src: index.html.j2
+        src: webapp.html.j2
         dest: /tmp/template/index.html
   - name: Deploy apache container
     docker_container:
