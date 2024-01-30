@@ -29,5 +29,5 @@
       image: httpd
       ports:
         - "80:80"
-      volume:
-        - "/tmp/template/index.html:/usr/local/apache2/htdocs/index.html"
+      volumes:
+        - "/home/admin/index.html:/usr/local/apache2/htdocs/index.html"
