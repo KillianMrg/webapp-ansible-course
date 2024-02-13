@@ -1,0 +1,12 @@
+---
+- hosts: prod
+  become: true
+  vars:
+    system_user: admin                # Surcharge la variable system_user par défaut du rôle
+  vars_files:
+    - files/secrets/credentials.yml
+  pre_tasks:
+    - name: create www_data          # Le role utilise un user qui n'existe pas dans l'environnement
+      user: name=www-data state=present
+  roles:
+    - { role: ansible-role-containerized-wordpress}
